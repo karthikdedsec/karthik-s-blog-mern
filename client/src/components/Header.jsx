@@ -32,7 +32,7 @@ function Header() {
           <HiMoon />
         </Button>
         <Link to="sign-in">
-          <Button gradientDuoTone="greenToBlue" pill>
+          <Button gradientDuoTone="greenToBlue" outline pill>
             Sign In
           </Button>
         </Link>
