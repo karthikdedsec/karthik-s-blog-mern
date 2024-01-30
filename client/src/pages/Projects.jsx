@@ -1,4 +1,4 @@
 function Projects() {
-  return <div>Projects</div>;
+  return <div className="min-h-screen">Projects</div>;
 }
 export default Projects;
