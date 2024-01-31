@@ -17,9 +17,9 @@ function Header() {
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
         <span className="px-2 py-1 bg-gradient-to-tr from-emerald-300  to-green-800 rounded-md text-white">
-          Karthik's
+          CodeCraft
         </span>
-        Blog
+        Chronicles
       </Link>
       <form>
         <TextInput

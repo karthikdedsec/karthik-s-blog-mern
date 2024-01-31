@@ -19,9 +19,9 @@ function FooterComponent() {
               className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
             >
               <span className="px-2 py-1 bg-gradient-to-tr from-emerald-300  to-green-800 rounded-md text-white">
-                Karthik's
+                CodeCraft
               </span>
-              Blog
+              Chronicles
             </Link>
           </div>
           {/* components grid*/}
@@ -71,7 +71,7 @@ function FooterComponent() {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright
             href="#"
-            by={`Karthik's blog`}
+            by={`CodeCraft Chronicles`}
             year={new Date().getFullYear()}
           />
           <div className="flex gap-8 mt-2 sm:justify-center">

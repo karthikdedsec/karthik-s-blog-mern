@@ -64,9 +64,9 @@ function SignIn() {
         <div className="flex-1">
           <Link to="/" className=" font-bold dark:text-white text-4xl">
             <span className="px-2 py-1 bg-gradient-to-tr from-emerald-300  to-green-800 rounded-md text-white">
-              Karthik's
+              CodeCraft
             </span>
-            Blog
+            Chronicles
           </Link>
           <p className="text-sm mt-5">
             This is a Blog page for developers. You can signIn with your email
