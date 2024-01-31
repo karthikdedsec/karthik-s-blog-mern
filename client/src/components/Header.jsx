@@ -1,12 +1,15 @@
-import { HiMoon } from "react-icons/hi";
+import { HiMoon, HiSun } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
   return (
     <Navbar className="border-b-2">
       <Link
@@ -30,8 +33,13 @@ function Header() {
         <AiOutlineSearch />
       </Button>
       <div className="flex items-center gap-2 md:order-2">
-        <Button className="w-12 h-10 hidden sm:inline" pill color="gray">
-          <HiMoon />
+        <Button
+          onClick={() => dispatch(toggleTheme())}
+          className="w-12 h-10 hidden sm:inline"
+          pill
+          color="gray"
+        >
+          {theme === "light" ? <HiMoon /> : <HiSun className="" />}
         </Button>
 
         {currentUser ? (
