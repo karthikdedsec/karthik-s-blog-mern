@@ -201,6 +201,7 @@ function DashProfile() {
             />
           )}
           <img
+            referrerpolicy="no-referrer"
             src={imageFileUrl || currentUser.profilePicture}
             alt="user"
             className={`rounded-full w-full h-full object-cover border-4 border-[lightgray] ${
