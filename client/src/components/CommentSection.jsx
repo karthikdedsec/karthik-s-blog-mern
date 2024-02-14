@@ -3,8 +3,14 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCommentSlice } from "../redux/comment/commentSlice";
 
 function CommentSection({ postId }) {
+  const dispatch = useDispatch();
+  const { commentz } = useSelector((state) => state.comment);
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
   const [commentError, setCommentError] = useState(null);
@@ -48,14 +54,44 @@ function CommentSection({ postId }) {
         if (res.ok) {
           const data = await res.json();
           setComments(data);
+          dispatch(setCommentSlice(data));
+        } else {
+          console.log("Failed to fetch comments:", res.status);
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     };
     getComments();
   }, [postId]);
 
+  const handleLike = async (commentId) => {
+    try {
+      if (!currentUser) {
+        navigate("/sign-in");
+        return;
+      }
+      const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+        method: "PUT",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setComments(
+          comments.map((cmnt) =>
+            cmnt._id === commentId
+              ? {
+                  ...cmnt,
+                  likes: data.likes,
+                  numberOfLikes: data.numberOfLikes,
+                }
+              : cmnt
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   console.log(comments);
 
   return (
@@ -110,7 +146,7 @@ function CommentSection({ postId }) {
           )}
         </form>
       )}
-      {comments.length === 0 ? (
+      {comments && comments.length === 0 ? (
         <p className="text-sm my-5">No comments yet!</p>
       ) : (
         <>
@@ -120,10 +156,17 @@ function CommentSection({ postId }) {
               <p>{comments.length}</p>
             </div>
           </div>
-          {comments &&
-            comments.map((comment) => (
-              <Comment key={comment._id} comment={comment} />
-            ))}
+          {comments.map(
+            (comment) =>
+              comment &&
+              comment._id && (
+                <Comment
+                  key={comment._id}
+                  comment={comment}
+                  handleLike={handleLike}
+                />
+              )
+          )}
         </>
       )}
     </div>
