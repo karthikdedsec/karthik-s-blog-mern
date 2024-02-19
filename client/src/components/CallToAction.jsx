@@ -13,8 +13,12 @@ function CallToAction() {
           className="rounded-tl-xl rounded-bl-none rounded-tr-none"
           gradientDuoTone="greenToBlue"
         >
-          <Link rel="noopener noreferrer" target="_blank" to="#">
-            Join Us
+          <Link
+            rel="noopener noreferrer"
+            target="_blank"
+            to="https://my-portfolio-website-peach.vercel.app/"
+          >
+            Visit
           </Link>
         </Button>
       </div>
